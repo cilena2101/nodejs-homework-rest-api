@@ -1,6 +1,6 @@
 import { HttpError } from "../helpers/index.js";
 
-import Contact from "../models/contact.js";
+import { Contact } from "../models/index.js";
 
 import { ctrlWrapper } from "../decorators/index.js";
 
@@ -25,22 +25,21 @@ const add = async (req, res) => {
 
 const updateContactById = async (req, res) => {
   const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, {new: true});
+  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, `Contact with id=${id} not found`);
   }
   res.json(result);
 };
 
-const updateFavorite= async (req, res) => {
+const updateFavorite = async (req, res) => {
   const { id } = req.params;
-  const result = await Contact.findByIdAndUpdate(id, req.body, {new: true});
+  const result = await Contact.findByIdAndUpdate(id, req.body, { new: true });
   if (!result) {
     throw HttpError(404, `Contact with id=${id} not found`);
   }
   res.json(result);
 };
-
 
 const deleteById = async (req, res) => {
   const { id } = req.params;
