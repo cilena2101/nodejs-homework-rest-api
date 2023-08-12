@@ -4,9 +4,9 @@ import { validateBody } from "../../decorators/index.js";
 
 import { usersSchemas } from "../../schemas/index.js";
 
-import { authController } from "../../controllers/index.js";
+import { authController} from "../../controllers/index.js";
 
-import { authenticate} from "../../middlewars/index.js";
+import {upload, authenticate} from "../../middlewars/index.js";
 
 const authRouter = express.Router();
 
@@ -16,6 +16,8 @@ authRouter.post("/signin", validateBody(usersSchemas.userSigninSchema), authCont
 
 authRouter.get("/current", authenticate, authController.getCurrent);
 
-authRouter.post("/signout", authenticate, authController.signout)
+authRouter.post("/signout", authenticate, authController.signout);
+
+authRouter.patch("/avatars", authenticate, upload.single("avatar"), authController.updateAvatar);
 
 export default authRouter;

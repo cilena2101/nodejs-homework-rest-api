@@ -6,7 +6,7 @@ import { contactsSchemas } from "../../schemas/index.js";
 
 import { validateBody } from "../../decorators/index.js";
 
-import { authenticate, isValidId } from "../../middlewars/index.js";
+import {upload, authenticate, isValidId } from "../../middlewars/index.js";
 
 const contactsRouter = express.Router();
 
